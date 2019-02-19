@@ -54,3 +54,13 @@ join customers on orders.CustomerID = customers.CustomerID
 GROUP BY City ORDER BY OrdersPerCity Desc
 
 ## delete all users that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
+
+DELETE FROM customers
+WHERE customers.customerID NOT IN (
+SELECT customerID from orders)
+
+
+<!-- DELETE
+FROM customers
+LEFT JOIN orders USING (customerID)
+WHERE orders.OrderID IS NULL; -->
